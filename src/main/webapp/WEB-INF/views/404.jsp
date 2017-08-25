@@ -11,8 +11,6 @@
   <title>${title}</title>
 </head>
 <body>
-${title}
-${content}
-hello page
+404 not found
 </body>
 </html>

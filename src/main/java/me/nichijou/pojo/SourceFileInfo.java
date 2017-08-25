@@ -11,4 +11,6 @@ public @Data class SourceFileInfo {
     private String sha;
     private String downloadUrl;
     private String htmlUrl;
+    private String content;
+    private String tags;
 }
