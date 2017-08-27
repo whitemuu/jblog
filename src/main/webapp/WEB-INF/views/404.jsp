@@ -8,9 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>${title}</title>
+  <title>404 not found</title>
 </head>
 <body>
-404 not found
+<pre>
+       _             _            _
+   _  /\ \         / /\       _  /\ \
+  /\_\\ \ \       / /  \     /\_\\ \ \
+ / / / \ \ \     / / /\ \   / / / \ \ \
+/ / /   \ \ \   / / /\ \ \ / / /   \ \ \
+\ \ \____\ \ \ /_/ /  \ \ \\ \ \____\ \ \
+ \ \________\ \\ \ \   \ \ \\ \________\ \
+  \/________/\ \\ \ \   \ \ \\/________/\ \
+            \ \ \\ \ \___\ \ \         \ \ \
+             \ \_\\ \/____\ \ \         \ \_\
+              \/_/ \_________\/          \/_/
+
+    </pre>
+<a href="/home.html">[home]</a>
 </body>
 </html>

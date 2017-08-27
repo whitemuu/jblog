@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 开启驼峰自动映射 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+<!--	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="mysql"/>
+			&lt;!&ndash; 设置为true时，使用RowBounds分页会进行count查询 &ndash;&gt;
+			<property name="rowBoundsWithCount" value="true" />
+		</plugin>
+
+		&lt;!&ndash; 注意顺序，应该是下面用到上面的缘故 &ndash;&gt;
+
+		<plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+			&lt;!&ndash; 为撒这个类里没有property里面的字段？ &ndash;&gt;
+
+			&lt;!&ndash;主键自增回写方法,默认值MYSQL,详细说明请看文档 &ndash;&gt;
+			<property name="IDENTITY" value="MYSQL" />
+			&lt;!&ndash;通用Mapper接口，多个通用接口用逗号隔开 &ndash;&gt;
+			<property name="mappers" value="com.github.abel533.mapper.Mapper" />
+		</plugin>
+	</plugins>-->
+</configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.nichijou.mapper.SourceFileInfoMapper">
+	<insert id="addArticles" parameterType="list">
+		INSERT INTO articles VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.name}, #{item.title}, #{item.sha}, #{item.tags}, #{item.htmlUrl}, #{item.content})
+		</foreach>
+	</insert>
+	<update id="updateArticles" parameterType="list">
+		<foreach collection="list" item="item">
+			UPDATE articles SET title=#{item.title}, sha=#{item.sha}, tags=#{item.tags}, content=#{item.content} WHERE name=#{item.name};
+		</foreach>
+	</update>
+	<select id="selectNameAndSha" resultType="SourceFileInfo">
+		SELECT name, sha FROM articles
+	</select>
+	<delete id="deleteArticles" parameterType="map">
+		DELETE FROM articles
+		<where>
+			AND name IN
+			<foreach collection="mapData" index="key" item="item" open="(" close=")" separator=",">
+				#{key}
+			</foreach>
+		</where>
+	</delete>
+
+</mapper>

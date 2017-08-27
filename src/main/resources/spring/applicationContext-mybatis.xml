@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource">
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->
+		<property name="idleConnectionTestPeriod" value="60"/>
+		<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->
+		<property name="idleMaxAge" value="30"/>
+		<!-- 每个分区最大的连接数 -->
+		<property name="maxConnectionsPerPartition" value="150"/>
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="5"/>
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml">
+		</property>
+		<!-- 加载mapper.xml -->
+		 <property name="mapperLocations" value="classpath:mybatis/mappers/**/*.xml"/>
+		<!-- 别名包 -->
+		<property name="typeAliasesPackage" value="me.nichijou.pojo">
+		</property>
+	</bean>
+	<!--扫瞄mapper接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="me.nichijou.mapper" />
+		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+	</bean>
+<!--	<bean id="sourceFileInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="me.nichijou.mapper.SourceFileInfoMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>-->
+
+</beans>
