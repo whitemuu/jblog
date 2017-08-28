@@ -20,7 +20,7 @@ public class HomeController {
 	@RequestMapping("home")
 	public String getHomePage(Model model) {
 		List<Article> articles = this.articleService.getAllTitles();
-		model.addAttribute("title", "homepage");
+		model.addAttribute("articles", articles);
 		return "home";
 	}
 }

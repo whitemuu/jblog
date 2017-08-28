@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Table(name = "articles")
 public @Data
 class Article {
+	private String name;
 	private String title;
 	private String tags;
 	private String htmlUrl;

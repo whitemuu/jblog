@@ -9,10 +9,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-  <title>${title}</title>
+  <title>{nichijou}·HOME</title>
 </head>
 <body>
-${content}
-home todo
+<c:forEach items="${articles}" var="article">
+  <a href="/article/${article.name}.html">${article.title}</a>
+  ${article.tags}<br/>
+</c:forEach>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

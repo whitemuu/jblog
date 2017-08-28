@@ -1,6 +1,9 @@
 package me.nichijou.service;
 
 import me.nichijou.mapper.SourceFileInfoMapper;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +15,15 @@ import static org.junit.Assert.*;
  * Created by nichijou on 8/27/17.
  */
 public class FetchServiceTest {
+	@Test
+	public void jsoup() throws Exception {
+		Document document = Jsoup.connect("https://github.com/whitemuu/blog/blob/master/articles/speedUpSSH.org").get();
+		Elements article = document.select("#readme > article");
+		Elements select = article.select("article > h1:nth-child(1)");
+		select.remove();
+		System.out.println(article.toString());
+	}
+
 	private ApplicationContext context;
 	FetchService fetchService;
 

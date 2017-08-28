@@ -1,6 +1,65 @@
-h1 {
-    font-size: 60px;
+#title {
+    /*width:100%;*/
+    /*background-color: aliceblue;*/
+    text-align: right;
+    margin: 0px;
+    padding: 0px;
+    border-bottom: solid medium darkgrey;
 }
-h2 {
-    font-size: 40px;
+
+footer {
+    border-top: solid 1px darkgrey;
+    margin-top: 10px;
+    text-align: center;
+    width: inherit;
+    color: #999;
+    /*position: absolute;*/
+    /*bottom: 0;*/
+}
+
+hr {
+    margin: 2px;
+}
+
+h1, h2 {
+    color: cornflowerblue;
+    font-size: larger;
+}
+
+blockquote {
+    /*font-style: italic;*/
+    color: #888;
+}
+
+body {
+    align-self: center;
+    margin: 20px auto;
+    min-width: 400px;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+table, th, td {
+    /*width:100%;*/
+    border: 1px solid #999;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: center;
+    width: 100px;
+    color: #555;
+}
+
+th {
+    background-color: aliceblue;
+}
+
+p {
+    margin: 7px 0px;
+}
+
+pre {
+    background-color: aliceblue;
+    padding: 10px;
 }

@@ -28,6 +28,7 @@ public class OrgParser {
 		}
 	}
 
+	@Deprecated
 	public static void parseContent(BufferedReader br, SourceFileInfo sourceFile) {
 		StringBuilder builder = new StringBuilder();
 		try {

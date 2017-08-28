@@ -4,6 +4,10 @@
 		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 		 version="3.1">
 
+<!--	<icon>
+		<small-icon>/img/favicon.jpg</small-icon>
+		<large-icon>/img/nichijou-pivot.png</large-icon>
+	</icon>-->
 	<!--spring -->
 	<context-param>
 		<!-- kn see ContextLoader.CONFIG_LOCATION_PARAM -->

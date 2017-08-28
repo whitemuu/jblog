@@ -9,7 +9,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +26,6 @@ public class Fetcher {
 
 	private static final ObjectMapper MAPPER = new ObjectMapper();
 
-	@Test
 	public void doGet() throws Exception {
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpGet httpGet = new HttpGet("https://api.github.com/repos/whitemuu/blog");

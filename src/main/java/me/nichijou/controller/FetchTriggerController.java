@@ -11,15 +11,15 @@ import java.io.IOException;
  * Created by nichijou on 8/27/17.
  */
 @Controller
-@RequestMapping("fetch")
 public class FetchTriggerController {
 	@Autowired
 	private FetchService fetchService;
 
+	@RequestMapping("fetch")
 	public String refreshArticles() {
 		try {
 			this.fetchService.refreshArticles();
-			return "redirect:home";
+			return "redirect:home.html";
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:404";
