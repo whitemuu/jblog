@@ -2,5 +2,9 @@ a simple blog system based on Github for personal use.
 
 currently only org-mode supported.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 11d2bfc830fa1dc4a731829adb8a590405a70638
 It fetches new articles from a specified Github repo and 
 display them more organized and customized.
