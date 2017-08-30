@@ -5,16 +5,18 @@
 	<insert id="addArticles" parameterType="list">
 		INSERT INTO articles VALUES
 		<foreach collection="list" item="item" separator=",">
-			(#{item.name}, #{item.title}, #{item.sha}, #{item.tags}, #{item.htmlUrl}, #{item.content})
+			(#{item.name}, #{item.title}, #{item.sha}, #{item.tags}, #{item.htmlUrl}, #{item.content},#{item.created})
 		</foreach>
 	</insert>
 	<update id="updateArticles" parameterType="list">
 		<foreach collection="list" item="item">
-			UPDATE articles SET title=#{item.title}, sha=#{item.sha}, tags=#{item.tags}, content=#{item.content} WHERE name=#{item.name};
+			UPDATE articles SET title=#{item.title}, sha=#{item.sha}, tags=#{item.tags}, content=#{item.content} ,
+			created=#{item.created}
+			WHERE name=#{item.name};
 		</foreach>
 	</update>
 	<select id="selectNameAndSha" resultType="SourceFileInfo">
-		SELECT name, sha FROM articles
+		SELECT name, sha FROM articles;
 	</select>
 	<delete id="deleteArticles" parameterType="map">
 		DELETE FROM articles

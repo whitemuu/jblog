@@ -1,20 +1,42 @@
+:root {
+    --footerColor: #999;
+}
+
 #title {
     /*width:100%;*/
     /*background-color: aliceblue;*/
     text-align: right;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     border-bottom: solid medium darkgrey;
+    color: var(--footerColor);
+    /*text-transform: lowercase;*/
+    text-transform: capitalize;
+    font-variant: small-caps;
 }
 
 footer {
     border-top: solid 1px darkgrey;
     margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
     width: inherit;
-    color: #999;
+    color: var(--footerColor);
     /*position: absolute;*/
     /*bottom: 0;*/
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:visited, footer a:link, footer a:active {
+    color: var(--footerColor);
+}
+/*no effect if placed before the last element, override by who?*/
+footer a:hover {
+    color: #666;
+    float:;
 }
 
 hr {
@@ -34,7 +56,7 @@ blockquote {
 body {
     align-self: center;
     margin: 20px auto;
-    min-width: 400px;
+    min-height: 500px;
     max-width: 1000px;
     padding: 20px;
 }
@@ -56,10 +78,30 @@ th {
 }
 
 p {
-    margin: 7px 0px;
+    margin: 7px 0;
 }
 
 pre {
     background-color: aliceblue;
     padding: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: auto;
 }
+
+pre, code, kbd {
+    -moz-tab-size: 4;
+    /*-o-tab-size: 4;*/
+    tab-size: 4;
+}
+
+.tags {
+    float: left;
+!important;
+}
+
+.articleTitle {
+    float: right;
+    text-align: right;
+}
+

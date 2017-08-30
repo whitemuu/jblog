@@ -33,19 +33,9 @@ public class SourceFileInfoMapperTest {
 
 	@Test
 	public void deleteArticles() throws Exception {
-		Map<String,String> map = new HashMap<>();
-		map.put("xxx.org","skdjfk");
-		map.put("aaaa.org","skdjfk");
-		map.put("abcd.org","skdjfk");
-		int i = mapper.deleteArticles(map);
-		System.out.println(i);
 	}
 
 	@Test
 	public void addArticles() throws Exception {
-		LinkedList<SourceFileInfo> list = new LinkedList<>();
-		list.add(new SourceFileInfo("f.org","www.www","skdjfkj","bb cc","cccccccccccccc"));
-		list.add(new SourceFileInfo("ii.org","www.www","sssssss","bb cc","ssssssssss"));
-		mapper.addArticles(list);
 	}
 }

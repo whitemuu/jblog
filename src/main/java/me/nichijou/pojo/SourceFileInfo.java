@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by nichijou on 8/25/17.
@@ -14,23 +15,14 @@ import javax.persistence.Table;
 public @Getter @Setter class SourceFileInfo {
 	private String name;
 
-	public SourceFileInfo() {
-	}
-
-	public SourceFileInfo(String name, String htmlUrl, String sha, String tags, String content) {
-
-		this.name = name;
-		this.htmlUrl = htmlUrl;
-		this.sha = sha;
-		this.tags = tags;
-		this.content = content;
-	}
 
 	private String path;
 	private String downloadUrl;//raw
 	private String htmlUrl;//origin
 
 	private String sha;
+
+	private Date created;
 
 	private String title;
 	private String tags;

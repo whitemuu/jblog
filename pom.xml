@@ -103,6 +103,8 @@
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+			<!--tomcat7:run failed if provided-->
+			<!--<scope>provided</scope>-->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
 		<dependency>
