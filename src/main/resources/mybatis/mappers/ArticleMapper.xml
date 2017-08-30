@@ -6,6 +6,6 @@
 		SELECT title, tags, html_url, content FROM articles WHERE name = #{value}
 	</select>
 	<select id="selectAllTitles" resultType="Article">
-		SELECT name, title, tags ,created FROM articles ORDER BY created DESC;
+		SELECT name, title, tags ,created, description FROM articles ORDER BY created DESC;
 	</select>
 </mapper>

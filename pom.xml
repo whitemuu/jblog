@@ -112,6 +112,13 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.8.3</version>
 		</dependency>
+		<!--I add this when want to get HttpServletRequest-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
 		<dependency>
 			<groupId>org.freemarker</groupId>

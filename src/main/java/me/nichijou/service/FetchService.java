@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import me.nichijou.pojo.Article;
 import me.nichijou.pojo.SourceFileInfo;
 import me.nichijou.util.OrgParser;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -14,7 +15,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -81,30 +81,38 @@ public class FetchService {
 				}
 			}
 		}
+		boolean anyUpdate = false;
 		if (!dbArticles.isEmpty()) {
+			anyUpdate = true;
 			this.articleService.removeArticles(dbArticles);
 		}
 		if (!sourceFileInfos.isEmpty()) {
+			anyUpdate = true;
 			for (SourceFileInfo sourceFileInfo : sourceFileInfos) {
 				this.fetchTitleAndContent(sourceFileInfo);
 			}
 			this.articleService.addArticles(sourceFileInfos);
 		}
 		if (!updatedSourceFileInfos.isEmpty()) {
+			anyUpdate = true;
 			for (SourceFileInfo updatedSourceFileInfo : updatedSourceFileInfos) {
 				this.fetchTitleAndContent(updatedSourceFileInfo);
 			}
 			this.articleService.updateArticles(updatedSourceFileInfos);
 		}
+		// TODO only renew rss if any change
+//		if (anyUpdate){
+//			this.updateRss(null,null);
+//		}
 	}
 
 	public void fetchTitleAndContent(SourceFileInfo sourceFileInfo) throws IOException {
 		String content = this.doGet(sourceFileInfo.getDownloadUrl());
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content.getBytes())));
 		OrgParser.parseMeta(bufferedReader, sourceFileInfo);
-		OrgParser.readDescription(bufferedReader,sourceFileInfo);
+		OrgParser.readDesc(bufferedReader, sourceFileInfo);
 
-		Elements article =  Jsoup.connect(sourceFileInfo.getHtmlUrl()).get().select("#readme > article");
+		Elements article = Jsoup.connect(sourceFileInfo.getHtmlUrl()).get().select("#readme > article");
 		article.select("article > h1:nth-child(1)").remove();
 		article.select("a.anchor").remove();
 		sourceFileInfo.setContent(article.toString());
@@ -122,32 +130,18 @@ public class FetchService {
 		OrgParser.parseContent(bufferedReader, sourceFileInfo);
 	}
 
-	void updateRss(List<> ) throws IOException, TemplateException {
-		Configuration configuration =  new Configuration(Configuration.VERSION_2_3_23);
-		String dir = System.getProperty("user.dir");
-		System.out.println(dir);
+	public void updateRss(List<Article> articles, String webRoot) throws IOException, TemplateException {
+		// todo trick 遍历articles，把某个field换成文章实际url
+		Configuration configuration = new Configuration(Configuration.VERSION_2_3_23);
 
-		configuration.setDirectoryForTemplateLoading(new File(Thread.currentThread().getContextClassLoader().getResource("").getPath()+"template"));
-		Template template = configuration.getTemplate("rss.xml");
 
-		HashMap<String, Object> root = new HashMap<String, Object>();
-//		root.put("world","世界你好丫");
-//
-//		Person person = new Person();
-//		person.setId(1);
-//		person.setName("十三姨");
-//		root.put("person",person);
-//
-//		ArrayList<String> persons = new ArrayList<String>();
-//		persons.add("马可波罗");
-//		persons.add("悉达多");
-//		persons.add("瘴气另");
-//		root.put("persons",persons);
-//
-//		root.put("val",null);
+		configuration.setDirectoryForTemplateLoading(new File(Thread.currentThread().getContextClassLoader().getResource("").getPath() + "template"));
+		Template template = configuration.getTemplate("rss");
+		HashMap<String, Object> root = new HashMap<>();
+		root.put("articles",articles);
 
-		Writer writer = new FileWriter(new File(dir+"/src/views/fm.html"));
+		Writer writer = new FileWriter(new File(webRoot + "/feed/rss.xml"));
 
-		template.process(root,writer);
+		template.process(root, writer);
 	}
 }

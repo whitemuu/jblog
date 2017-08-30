@@ -34,7 +34,7 @@ public class OrgParser {
 		}
 	}
 
-	public static void readDescription(BufferedReader br, SourceFileInfo sourceFile) throws IOException {
+	public static void readDesc(BufferedReader br, SourceFileInfo sourceFile) throws IOException {
 		char[] desc = new char[100];
 		br.read(desc);
 		sourceFile.setDescription(new String(desc));

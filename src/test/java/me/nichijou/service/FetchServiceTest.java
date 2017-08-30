@@ -16,6 +16,12 @@ import static org.junit.Assert.*;
  */
 public class FetchServiceTest {
 	@Test
+	public void updateRss() throws Exception {
+		String dir = System.getProperty("user.dir");
+		System.out.println(dir);
+	}
+
+	@Test
 	public void jsoup() throws Exception {
 		Document document = Jsoup.connect("https://github.com/whitemuu/blog/blob/master/articles/speedUpSSH.org").get();
 		Elements article = document.select("#readme > article");
