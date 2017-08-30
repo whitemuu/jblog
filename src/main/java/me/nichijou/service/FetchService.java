@@ -3,6 +3,9 @@ package me.nichijou.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import me.nichijou.pojo.SourceFileInfo;
 import me.nichijou.util.OrgParser;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -17,14 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 /**
  * Created by nichijou on 8/27/17.
@@ -105,6 +102,7 @@ public class FetchService {
 		String content = this.doGet(sourceFileInfo.getDownloadUrl());
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content.getBytes())));
 		OrgParser.parseMeta(bufferedReader, sourceFileInfo);
+		OrgParser.readDescription(bufferedReader,sourceFileInfo);
 
 		Elements article =  Jsoup.connect(sourceFileInfo.getHtmlUrl()).get().select("#readme > article");
 		article.select("article > h1:nth-child(1)").remove();
@@ -122,5 +120,34 @@ public class FetchService {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content.getBytes())));
 		OrgParser.parseMeta(bufferedReader, sourceFileInfo);
 		OrgParser.parseContent(bufferedReader, sourceFileInfo);
+	}
+
+	void updateRss(List<> ) throws IOException, TemplateException {
+		Configuration configuration =  new Configuration(Configuration.VERSION_2_3_23);
+		String dir = System.getProperty("user.dir");
+		System.out.println(dir);
+
+		configuration.setDirectoryForTemplateLoading(new File(Thread.currentThread().getContextClassLoader().getResource("").getPath()+"template"));
+		Template template = configuration.getTemplate("rss.xml");
+
+		HashMap<String, Object> root = new HashMap<String, Object>();
+//		root.put("world","世界你好丫");
+//
+//		Person person = new Person();
+//		person.setId(1);
+//		person.setName("十三姨");
+//		root.put("person",person);
+//
+//		ArrayList<String> persons = new ArrayList<String>();
+//		persons.add("马可波罗");
+//		persons.add("悉达多");
+//		persons.add("瘴气另");
+//		root.put("persons",persons);
+//
+//		root.put("val",null);
+
+		Writer writer = new FileWriter(new File(dir+"/src/views/fm.html"));
+
+		template.process(root,writer);
 	}
 }

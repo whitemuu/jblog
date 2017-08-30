@@ -24,6 +24,8 @@ public @Getter @Setter class SourceFileInfo {
 
 	private Date created;
 
+	private String description;
+
 	private String title;
 	private String tags;
 	private String content;

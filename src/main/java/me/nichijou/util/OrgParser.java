@@ -5,6 +5,7 @@ import me.nichijou.pojo.SourceFileInfo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by nichijou on 8/25/17.
@@ -22,13 +23,21 @@ public class OrgParser {
 				} else if (line.contains("#+DATE: ")) {
 					sourceFile.setCreated(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz").parse(line.substring(8)));
 //				}else if (line.matches("\\ *\\n")){
-				} else if (!line.contains("#+")) {
+				} else if (!line.contains("#+") || !line.equals("")) {
+					if (sourceFile.getCreated() == null)
+						sourceFile.setCreated(new Date());
 					break;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void readDescription(BufferedReader br, SourceFileInfo sourceFile) throws IOException {
+		char[] desc = new char[100];
+		br.read(desc);
+		sourceFile.setDescription(new String(desc));
 	}
 
 	@Deprecated
