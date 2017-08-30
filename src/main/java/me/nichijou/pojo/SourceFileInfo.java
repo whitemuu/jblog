@@ -1,6 +1,7 @@
 package me.nichijou.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,26 +13,15 @@ import java.util.Date;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "articles")
-public @Getter @Setter class SourceFileInfo {
-	private String name;
-
-
+public @Data
+class SourceFileInfo extends Article {
 	private String path;
 	private String downloadUrl;//raw
-	private String htmlUrl;//origin
-
 	private String sha;
-
 	private Date created;
-
-	private String description;
-
-	private String title;
-	private String tags;
-	private String content;
 
 	@Override
 	public String toString() {
-		return name+":"+sha+":"+htmlUrl;
+		return name + ":" + sha + ":" + htmlUrl;
 	}
 }

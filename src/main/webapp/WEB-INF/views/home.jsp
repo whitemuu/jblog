@@ -11,6 +11,7 @@
 <head>
   <title>{nichijou}·HOME</title>
   <link rel="stylesheet" href="/css/my.css">
+  <link rel="alternate" type="application/rss+xml" title="NICHIJOU » FEED" href="/feed/rss.xml">
 </head>
 <body>
 <c:forEach items="${articles}" var="article">

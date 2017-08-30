@@ -5,13 +5,14 @@
 	<insert id="addArticles" parameterType="list">
 		INSERT INTO articles VALUES
 		<foreach collection="list" item="item" separator=",">
-			(#{item.name}, #{item.title}, #{item.sha}, #{item.created},#{item.tags}, #{item.htmlUrl},#{item.desc} #{item.content},)
+			(#{item.name}, #{item.title}, #{item.sha}, #{item.created}, #{item.tags}, #{item.htmlUrl}, #{item.description},
+			#{item.content})
 		</foreach>
 	</insert>
 	<update id="updateArticles" parameterType="list">
 		<foreach collection="list" item="item">
 			UPDATE articles SET title=#{item.title}, sha=#{item.sha}, tags=#{item.tags}, content=#{item.content} ,
-			created=#{item.created}, description=#{item.desc}
+			created=#{item.created}, description=#{item.description}
 			WHERE name=#{item.name};
 		</foreach>
 	</update>

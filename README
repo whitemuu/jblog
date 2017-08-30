@@ -5,8 +5,10 @@ currently only org-mode supported.
 It fetches new articles from a specified Github repo and 
 display them more organized and customized.
 
-todo list
+todo list:
 - [ ] appearance
+  - [ ] heading hierarchy
+  - [ ] pl colour
 - [ ] manipulate tags with js
-- [ ] rss
+- [ ] rss bug fix
 - [ ] Quartz auto fetch

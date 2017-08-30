@@ -23,7 +23,7 @@ public class OrgParser {
 				} else if (line.contains("#+DATE: ")) {
 					sourceFile.setCreated(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz").parse(line.substring(8)));
 //				}else if (line.matches("\\ *\\n")){
-				} else if (!line.contains("#+") || !line.equals("")) {
+				} else if (!line.contains("#+") && !line.equals("")) {
 					if (sourceFile.getCreated() == null)
 						sourceFile.setCreated(new Date());
 					break;
