@@ -4,3 +4,9 @@ currently only org-mode supported.
 
 It fetches new articles from a specified Github repo and 
 display them more organized and customized.
+
+todo list
+- [ ] appearance
+- [ ] manipulate tags with js
+- [ ] rss
+- [ ] Quartz auto fetch
