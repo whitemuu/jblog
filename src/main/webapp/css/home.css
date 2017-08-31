@@ -1,0 +1,74 @@
+:root {
+    --footerColor: #999;
+}
+
+footer {
+    border-top: solid 1px darkgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: inherit;
+    color: var(--footerColor);
+    /*position: absolute;*/
+    /*bottom: 0;*/
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:visited, footer a:link, footer a:active {
+    color: var(--footerColor);
+}
+
+/*no effect if placed before the last element, override by who?*/
+footer a:hover {
+    color: #666;
+}
+
+
+body {
+    margin: 0;
+}
+
+div#filterbar {
+    height: 30px;
+    overflow: hidden;
+    background-color: lightskyblue;
+    position: fixed;
+    top: 0;
+    /*top: 0;*/
+    width: 100%;
+    align-items: center;
+}
+
+div#filter {
+    background-color: cornsilk;
+    width: 800px;
+    height: 30px;
+}
+
+div#items {
+    align-self: center;
+    margin: 20px auto;
+    min-height: 500px;
+    max-width: 800px;
+    padding: 20px;
+}
+
+div.item {
+    overflow: auto;
+    border-bottom: thin solid grey;
+    padding: 5px;
+}
+
+div.tags {
+    float: left;
+    /*!important;*/
+}
+
+div.articleTitle {
+    float: right;
+    text-align: right;
+}
+

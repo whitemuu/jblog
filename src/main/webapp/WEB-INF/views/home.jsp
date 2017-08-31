@@ -8,23 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head>
-  <title>{nichijou}·HOME</title>
-  <link rel="stylesheet" href="/css/my.css">
-  <link rel="alternate" type="application/rss+xml" title="NICHIJOU » FEED" href="/feed/rss.xml">
-</head>
+<title>{nichijou}·HOME</title>
+<link rel="stylesheet" href="/css/home.css">
+<link rel="alternate" type="application/rss+xml" title="NICHIJOU » FEED" href="/feed/rss.xml">
 <body>
-<c:forEach items="${articles}" var="article">
-  <div class="item">
-      <%--<div class="tags">${article.tags}</div>--%>
-    <div class="tags">
-      <c:forTokens items="${article.tags}" delims="," var="tag">
-        <a href="xxx.html"><c:out value="${tag}"/></a>
-      </c:forTokens>
+<div id="filterbar"><div id="fiter"></div></div>
+<div id="items">
+  <c:forEach items="${articles}" var="article">
+    <div class="item">
+        <%--<div class="tags">${article.tags}</div>--%>
+      <div class="tags">
+        <c:forTokens items="${article.tags}" delims="," var="tag">
+          <a href="xxx.html"><c:out value="${tag}"/></a>
+        </c:forTokens>
+      </div>
+      <div class="articleTitle"><a href="/article/${article.name}.html">${article.title}</a></div>
     </div>
-    <div class="articleTitle"><a href="/article/${article.name}.html">${article.title}</a></div>
-  </div>
-</c:forEach>
+  </c:forEach>
+</div>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

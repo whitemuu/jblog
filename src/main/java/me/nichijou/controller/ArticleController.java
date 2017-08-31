@@ -21,9 +21,8 @@ public class ArticleController {
 
 	@RequestMapping(value = "{name}", method = RequestMethod.GET)
 	public String getArticle(@PathVariable String name, Model model) {
-		Article article = null;
 		try {
-			article = this.service.getArticleByName(name);
+			Article article = this.service.getArticleByName(name);
 			model.addAttribute("article", article);
 			// 返回视图会被拦截如果匹配servlet拦截路径的话
 			return "page";

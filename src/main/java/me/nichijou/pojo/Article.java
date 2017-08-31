@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 /**
  * Created by nichijou on 8/25/17.
+ * this bean is more frequently used than SourceFileInfo
  */
 @Table(name = "articles")
 public @Data
@@ -18,6 +19,4 @@ class Article {
 	String description; // 不要用desc 是sql关键字 会冲突
 	String htmlUrl;
 	String content;
-	//	private Date lastModified;
-	//	private Date created;
 }

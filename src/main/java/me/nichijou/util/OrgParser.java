@@ -4,6 +4,7 @@ import me.nichijou.pojo.SourceFileInfo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,25 +13,27 @@ import java.util.Date;
  */
 public class OrgParser {
 
-	public static void parseMeta(BufferedReader br, SourceFileInfo sourceFile) {
-		try {
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (line.contains("#+TAGS: ")) {
-					sourceFile.setTags(line.substring(7));
-				} else if (line.contains("#+TITLE: ")) {
-					sourceFile.setTitle(line.substring(8));
-				} else if (line.contains("#+DATE: ")) {
+	public static void parseMeta(BufferedReader br, SourceFileInfo sourceFile) throws IOException {
+		String line;
+		while ((line = br.readLine()) != null) {
+			if (line.contains("#+TAGS: ")) {
+				sourceFile.setTags(line.substring(7));
+			} else if (line.contains("#+TITLE: ")) {
+				sourceFile.setTitle(line.substring(8));
+			} else if (line.contains("#+DATE: ")) {
+				try {
 					sourceFile.setCreated(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz").parse(line.substring(8)));
-//				}else if (line.matches("\\ *\\n")){
-				} else if (!line.contains("#+") && !line.equals("")) {
-					if (sourceFile.getCreated() == null)
-						sourceFile.setCreated(new Date());
-					break;
+				} catch (ParseException e) {
+					//日期格式错误
+					sourceFile.setCreated(new Date());
 				}
+				// todo 没有找到优雅的seek back,方法，所以当前代码读到空行终止，不能消耗掉流中多余的空行，因此org-mode需要按照严格的格式
+//				} else if (!line.contains("#+") && !line.equals("")) {
+			} else if (!line.contains("#+")) {
+				if (sourceFile.getCreated() == null)
+					sourceFile.setCreated(new Date());
+				break;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

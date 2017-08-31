@@ -10,5 +10,5 @@ todo list:
   - [ ] heading hierarchy
   - [ ] pl colour
 - [ ] manipulate tags with js
-- [ ] rss bug fix
+- [X] rss bug fix
 - [ ] Quartz auto fetch

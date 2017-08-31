@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -30,11 +31,11 @@ public class FetchService {
 	private static final ObjectMapper MAPPER = new ObjectMapper();
 
 	@Value("${GITHUB_REPO_URL}")
-	public String REPO_URL;
+	private String REPO_URL;
 	@Value("${GITHUB_ARTICLES_URL}")
-	public String ARTICLES_URL;
+	private String ARTICLES_URL;
 
-	public void refreshArticles() throws IOException {
+	public boolean refreshArticles() throws IOException {
 		List<SourceFileInfo> sourceFileInfos = this.getSourceFileInfos();
 		List<SourceFileInfo> updatedSourceFileInfos = new LinkedList<>();
 		Map<String, String> dbArticles = this.articleService.getNameAndShaInRepo();
@@ -70,10 +71,7 @@ public class FetchService {
 			}
 			this.articleService.updateArticles(updatedSourceFileInfos);
 		}
-		// TODO only renew rss if any change
-//		if (anyUpdate){
-//			this.updateRss(null,null);
-//		}
+		return anyUpdate;
 	}
 
 	public List<SourceFileInfo> getSourceFileInfos() throws IOException {
@@ -110,14 +108,12 @@ public class FetchService {
 	}
 
 	public void updateRss(List<Article> articles, String webRoot) throws IOException, TemplateException {
-		// todo trick 遍历articles，把某个field换成文章实际url
 		Configuration configuration = new Configuration(Configuration.VERSION_2_3_23);
 
-
 		configuration.setDirectoryForTemplateLoading(new File(Thread.currentThread().getContextClassLoader().getResource("").getPath() + "template"));
-		Template template = configuration.getTemplate("rss");
+		Template template = configuration.getTemplate("rss.ftl");
 		HashMap<String, Object> root = new HashMap<>();
-		root.put("articles",articles);
+		root.put("articles", articles);
 
 		Writer writer = new FileWriter(new File(webRoot + "/feed/rss.xml"));
 

@@ -6,7 +6,6 @@ import me.nichijou.service.ArticleService;
 import me.nichijou.service.FetchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,15 +24,16 @@ public class FetchTrigger {
 	private ArticleService articleService;
 
 	@RequestMapping("fetch")
-	public String refreshArticles(Model model, HttpServletRequest request) {
+	public String refreshArticles(HttpServletRequest request) {
 		try {
-			this.fetchService.refreshArticles();
-//			return "redirect:home.html";
-			String webRoot = request.getSession().getServletContext().getRealPath("");
-			List<Article> articles = this.articleService.getAllTitles();
-			this.fetchService.updateRss(articles,webRoot);
-			model.addAttribute("articles", articles);
-			return "home";
+			boolean anyUpdate = this.fetchService.refreshArticles();
+			if (anyUpdate) {
+				// FIXME this is queried twice if any update
+				List<Article> articles = this.articleService.getAllTitles();
+				String webRoot = request.getSession().getServletContext().getRealPath("");
+				this.fetchService.updateRss(articles, webRoot);
+			}
+			return "redirect:home.html";
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:404";
