@@ -12,7 +12,8 @@
 <body>
 <footer>
   <%--<a href="${article.htmlUrl}">[origin]</a>--%>
-  <a href="/home.html">[home]</a> powered by <a href="https://github.com/whitemuu/jblog" target="_blank">jblog</a>
+  <a href="/home.html">[home]</a> &nbsp&nbsp&nbsp&nbsp&nbsp©2017 <a href="https://twitter.com/nichijou_lab">nichijou</a>,
+  powered by <a href="https://github.com/whitemuu/jblog" target="_blank">jblog(demo)</a>
 </footer>
 </body>
 </html>

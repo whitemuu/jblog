@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -39,8 +40,8 @@ public class OrgParser {
 
 	public static void readDesc(BufferedReader br, SourceFileInfo sourceFile) throws IOException {
 		char[] desc = new char[100];
-		br.read(desc);
-		sourceFile.setDescription(new String(desc));
+		int num = br.read(desc);
+		sourceFile.setDescription(new String(Arrays.copyOfRange(desc,0,num)));
 	}
 
 	@Deprecated
@@ -53,7 +54,6 @@ public class OrgParser {
 				if (line.matches("\\*+\\ .*")) {
 					builder.append(wrap(line, "h" + line.indexOf(' ')));
 				} else {
-					//todo
 					builder.append(wrap(line, "p"));
 				}
 			}

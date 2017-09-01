@@ -2,19 +2,16 @@
     --footerColor: #999;
 }
 
-footer {
-    border-top: solid 1px darkgrey;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    width: inherit;
-    color: var(--footerColor);
-    /*position: absolute;*/
-    /*bottom: 0;*/
+a {
+    text-decoration: none;
 }
 
-footer a {
-    text-decoration: none;
+footer {
+    border-top: solid 1px darkgrey;
+    margin: 30px auto 5px;
+    text-align: center;
+    max-width: 800px;
+    color: var(--footerColor);
 }
 
 footer a:visited, footer a:link, footer a:active {
@@ -26,45 +23,56 @@ footer a:hover {
     color: #666;
 }
 
-
 body {
     margin: 0;
 }
 
 div#filterbar {
-    height: 30px;
+    height: 40px;
     overflow: hidden;
-    background-color: lightskyblue;
+    background-color: #333;
     position: fixed;
     top: 0;
-    /*top: 0;*/
     width: 100%;
     align-items: center;
 }
 
-div#filter {
-    background-color: cornsilk;
-    width: 800px;
-    height: 30px;
-}
-
 div#items {
+    font-family: Monaco, Menlo, Monospace;
     align-self: center;
     margin: 20px auto;
-    min-height: 500px;
+    /*min-height: 500px;*/
     max-width: 800px;
     padding: 20px;
+    min-height: 70%;
+    min-height: -webkit-calc(100% - 114px);
+    min-height: -moz-calc(100% - 114px);
+    min-height: calc(100% - 114);
 }
 
 div.item {
     overflow: auto;
     border-bottom: thin solid grey;
-    padding: 5px;
+    padding: 8px 5px 1px;
+    height: 25px;
+}
+
+div.item:hover {
+    background-color: #999;
 }
 
 div.tags {
+    font-size: 13px;
     float: left;
     /*!important;*/
+}
+
+div.tags span {
+    color: white;
+    background-color: #333;
+    padding: 1px 4px;
+    margin-top: 6px;
+    border-radius: 3px;
 }
 
 div.articleTitle {
@@ -72,3 +80,10 @@ div.articleTitle {
     text-align: right;
 }
 
+div.articleTitle a:link, div.articleTitle a:visited, div.articleTitle a:active {
+    color: #333;
+}
+
+div.articleTitle a:hover {
+    color: white;
+}

@@ -9,17 +9,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <title>{nichijou}·HOME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/css/home.css">
 <link rel="alternate" type="application/rss+xml" title="NICHIJOU » FEED" href="/feed/rss.xml">
 <body>
-<div id="filterbar"><div id="fiter"></div></div>
+<div id="filterbar"></div>
 <div id="items">
   <c:forEach items="${articles}" var="article">
     <div class="item">
         <%--<div class="tags">${article.tags}</div>--%>
       <div class="tags">
         <c:forTokens items="${article.tags}" delims="," var="tag">
-          <a href="xxx.html"><c:out value="${tag}"/></a>
+          <span><c:out value="${tag}"/></span>
         </c:forTokens>
       </div>
       <div class="articleTitle"><a href="/article/${article.name}.html">${article.title}</a></div>

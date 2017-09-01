@@ -2,7 +2,7 @@
     --footerColor: #999;
 }
 
-#title {
+h1#title {
     /*width:100%;*/
     /*background-color: aliceblue;*/
     text-align: right;
@@ -13,17 +13,20 @@
     /*text-transform: lowercase;*/
     text-transform: capitalize;
     font-variant: small-caps;
+    font-family: serif;
+}
+
+div#article {
+    /*font-family: Monaco, Menlo, Monospace;*/
+    min-height: 800px;
 }
 
 footer {
     border-top: solid 1px darkgrey;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 30px auto 5px;
     text-align: center;
-    width: inherit;
+    max-width: 800px;
     color: var(--footerColor);
-    /*position: absolute;*/
-    /*bottom: 0;*/
 }
 
 footer a {
@@ -43,9 +46,19 @@ hr {
     margin: 2px;
 }
 
-h1, h2 {
-    color: cornflowerblue;
-    font-size: larger;
+h1, h2, h3 {
+    color: #333;
+    font-family: Monaco, Menlo, Monospace;
+    border-bottom: solid 1px #999;
+    margin-bottom: 6px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2, h3 {
+    font-size: 18px;
 }
 
 blockquote {
@@ -55,12 +68,12 @@ blockquote {
 
 body {
     align-self: center;
-    margin: 20px auto;
+    margin: 20px auto 0;
     min-height: 500px;
     max-width: 800px;
     padding: 20px;
+    padding-bottom: 0;
 }
-
 
 table, th, td {
     /*width:100%;*/
@@ -70,12 +83,12 @@ table, th, td {
 
 th, td {
     text-align: center;
-    width: 100px;
+    min-width: 100px;
     color: #555;
 }
 
 th {
-    background-color: aliceblue;
+    background-color: #eee;
 }
 
 p {
@@ -83,7 +96,7 @@ p {
 }
 
 pre {
-    background-color: aliceblue;
+    background-color: #eee;
     padding: 10px;
     white-space: pre-wrap;
     word-wrap: break-word;
