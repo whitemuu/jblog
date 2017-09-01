@@ -10,8 +10,8 @@
 <html>
 <title>{nichijou}·HOME</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/css/home.css">
-<link rel="alternate" type="application/rss+xml" title="NICHIJOU » FEED" href="/feed/rss.xml">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
+<link rel="alternate" type="application/rss+xml" title="NICHIJOU » FEED" href="${pageContext.request.contextPath}/feed/rss.xml">
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

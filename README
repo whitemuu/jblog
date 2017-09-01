@@ -1,9 +1,10 @@
-a simple blog system based on Github for personal use.
+a simple blog software build with java based on Github for
+personal use.
 
 currently only org-mode supported.
 
-It fetches new articles from a specified Github repo and 
-display them more organized and customized.
+It fetches new articles from your Github repo and stored on
+your server as your site.
 
 todo list:
 - [ ] appearance
@@ -11,4 +12,21 @@ todo list:
   - [ ] pl colour
 - [ ] manipulate tags with js
 - [X] rss bug fix
+- [ ] sitemap generator
 - [X] Quartz auto fetch
+- [ ] synchronize fechmethod to prevent multi fetch requests
+
+=============== quick start ==============================
+
+It's fairly a simple software so long as you're familiar
+with Java Web App. Clone and figure it out starting with
+three controllers(one fetch trigger for site owner) and a
+Quartz job(application-schedular.xml)
+
+=============== unpleasant behaviors =====================
+
+adjacent lines will be concatenated with a white-space in
+the Github's html output.
+
+org-mode's header is strict, please place a blank line
+between content and #+XXX: stuffs
