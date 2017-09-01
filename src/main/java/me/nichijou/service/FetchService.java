@@ -101,7 +101,7 @@ public class FetchService {
 		Elements article = Jsoup.connect(sourceFileInfo.getHtmlUrl()).get().select("#readme > article");
 		article.select("article > h1:nth-child(1)").remove();
 		article.select("a.anchor").remove();
-		article.select("table").wrap("<div style=\"overflow-x:auto;\"></div>")
+		article.select("table").wrap("<div style=\"overflow-x:auto;\"></div>");
 		sourceFileInfo.setContent(article.toString());
 	}
 
