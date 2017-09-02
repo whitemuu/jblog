@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource">
 		<property name="driverClass" value="${jdbc.driver}"/>
@@ -22,23 +25,23 @@
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml">
 		</property>
 		<!-- 加载mapper.xml -->
-		 <property name="mapperLocations" value="classpath:mybatis/mappers/**/*.xml"/>
+		<property name="mapperLocations" value="classpath:mybatis/mappers/**/*.xml"/>
 		<!-- 别名包 -->
 		<property name="typeAliasesPackage" value="me.nichijou.pojo">
 		</property>
 	</bean>
 	<!--扫瞄mapper接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="me.nichijou.mapper" />
+		<property name="basePackage" value="me.nichijou.mapper"/>
 		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
 	</bean>
-<!--	<bean id="sourceFileInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<!--	<bean id="sourceFileInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="me.nichijou.mapper.SourceFileInfoMapper"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>-->
+		</bean>-->
 
 </beans>
