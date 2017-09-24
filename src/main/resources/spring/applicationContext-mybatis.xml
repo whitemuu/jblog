@@ -39,7 +39,7 @@
 		<property name="basePackage" value="me.nichijou.mapper"/>
 		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
 	</bean>
-	<!--	<bean id="sourceFileInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+<!--		<bean id="sourceFileInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="me.nichijou.mapper.SourceFileInfoMapper"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 		</bean>-->

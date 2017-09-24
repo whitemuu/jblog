@@ -39,7 +39,7 @@ public class FetchService {
 	@Value("${GITHUB_ARTICLES_URL}")
 	private String ARTICLES_URL;
 
-	public void refreshArticles() throws IOException, TemplateException {
+	public void refreshArticles(String json) throws IOException, TemplateException {
 		List<SourceFileInfo> sourceFileInfos = this.getSourceFileInfos();
 		List<SourceFileInfo> updatedSourceFileInfos = new LinkedList<>();
 		Map<String, String> dbArticles = this.articleService.getNameAndShaInRepo();

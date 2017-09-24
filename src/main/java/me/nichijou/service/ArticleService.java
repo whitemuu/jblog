@@ -17,43 +17,43 @@ import java.util.Map;
  */
 @Service
 public class ArticleService {
-	@Autowired
-	private SourceFileInfoMapper sourceFileInfoMapper;
-	@Autowired
-	private ArticleMapper articleMapper;
+    @Autowired
+    private SourceFileInfoMapper sourceFileInfoMapper;
+    @Autowired
+    private ArticleMapper articleMapper;
 
-	public Article getArticleByName(String name) throws NoArticleWithThisName {
-		Article article = this.articleMapper.selectArticleByName(name);
-		if (article == null) {
-			throw new NoArticleWithThisName();
-		}
-		return article;
-	}
+    public Article getArticleByName(String name) throws NoArticleWithThisName {
+        Article article = this.articleMapper.selectArticleByName(name);
+        if (article == null) {
+            throw new NoArticleWithThisName();
+        }
+        return article;
+    }
 
-	Map<String, String> getNameAndShaInRepo() {
-		List<SourceFileInfo> sourceFileInfos = this.sourceFileInfoMapper.selectNameAndSha();
-		HashMap<String, String> map = new HashMap<>();
-		for (SourceFileInfo sourceFileInfo : sourceFileInfos) {
-			map.put(sourceFileInfo.getName(), sourceFileInfo.getSha());
-		}
-		return map;
-	}
+    Map<String, String> getNameAndShaInRepo() {
+        List<SourceFileInfo> sourceFileInfos = this.sourceFileInfoMapper.selectNameAndSha();
+        HashMap<String, String> map = new HashMap<>();
+        for (SourceFileInfo sourceFileInfo : sourceFileInfos) {
+            map.put(sourceFileInfo.getName(), sourceFileInfo.getSha());
+        }
+        return map;
+    }
 
-	public void removeArticles(Map<String, String> articles) {
-		this.sourceFileInfoMapper.deleteArticles(articles);
-	}
+    public void removeArticles(Map<String, String> articles) {
+        this.sourceFileInfoMapper.deleteArticles(articles);
+    }
 
 
-	public void addArticles(List<SourceFileInfo> sourceFileInfos) {
-		this.sourceFileInfoMapper.addArticles(sourceFileInfos);
-	}
+    public void addArticles(List<SourceFileInfo> sourceFileInfos) {
+        this.sourceFileInfoMapper.addArticles(sourceFileInfos);
+    }
 
-	public void updateArticles(List<SourceFileInfo> updatedSourceFileInfos) {
-		this.sourceFileInfoMapper.updateArticles(updatedSourceFileInfos);
-	}
+    public void updateArticles(List<SourceFileInfo> updatedSourceFileInfos) {
+        this.sourceFileInfoMapper.updateArticles(updatedSourceFileInfos);
+    }
 
-	public List<Article> getAllTitles() {
-		List<Article> articles = this.articleMapper.selectAllTitles();
-		return articles;
-	}
+    public List<Article> getAllTitles() {
+        List<Article> articles = this.articleMapper.selectAllTitles();
+        return articles;
+    }
 }
