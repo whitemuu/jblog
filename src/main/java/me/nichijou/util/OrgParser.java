@@ -28,7 +28,7 @@ public class OrgParser {
 					//日期格式错误
 					sourceFile.setCreated(new Date());
 				}
-				// todo 没有找到优雅的seek back,方法，所以当前代码读到空行终止，不能消耗掉流中多余的空行，因此org-mode需要按照严格的格式
+				// TODO 没有找到优雅的seek back,方法，所以当前代码读到空行终止，不能消耗掉流中多余的空行，因此org-mode需要按照严格的格式
 //				} else if (!line.contains("#+") && !line.equals("")) {
 			} else if (!line.contains("#+")) {
 				if (sourceFile.getCreated() == null)

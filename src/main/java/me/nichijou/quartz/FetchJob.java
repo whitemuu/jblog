@@ -17,7 +17,7 @@ public class FetchJob implements Job{
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		ApplicationContext applicationContext = (ApplicationContext) context.getJobDetail().getJobDataMap().get("applicationContext");
 		try {
-			applicationContext.getBean(FetchService.class).refreshArticles();
+			applicationContext.getBean(FetchService.class).syndAllArticles();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (TemplateException e) {

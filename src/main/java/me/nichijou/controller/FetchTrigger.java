@@ -1,7 +1,6 @@
 package me.nichijou.controller;
 
 import freemarker.template.TemplateException;
-import me.nichijou.service.ArticleService;
 import me.nichijou.service.FetchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -22,14 +20,12 @@ public class FetchTrigger {
     @Autowired
     private FetchService fetchService;
 
-    @Autowired
-    private ArticleService articleService;
-
-    @RequestMapping(value = "fetch",method = RequestMethod.POST)
+    // response to github push webhook
+    @RequestMapping(value = "fetch", method = RequestMethod.POST)
     public ResponseEntity<Void> refreshArticles(HttpEntity<String> httpEntity) {
         try {
             String json = httpEntity.getBody();
-            this.fetchService.refreshArticles(json);
+            this.fetchService.updateArticles(json);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (IOException e) {
             e.printStackTrace();

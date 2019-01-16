@@ -1,6 +1,5 @@
 package me.nichijou.service;
 
-import me.nichijou.mapper.SourceFileInfoMapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -8,8 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by nichijou on 8/27/17.
@@ -50,7 +47,7 @@ public class FetchServiceTest {
 
 	@Test
 	public void refreshArticles() throws Exception {
-		fetchService.refreshArticles();
+		fetchService.syndAllArticles();
 	}
 
 	@Test
